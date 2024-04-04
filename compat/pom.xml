@@ -34,9 +34,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>${groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>gwtupload</artifactId>
-      <version>${version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>

@@ -5,13 +5,11 @@
   <artifactId>gwtupload-project</artifactId>
   <name>GwtUpload project</name>
   <packaging>pom</packaging>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.6</version>
 
   <modules>
     <module>core</module>
-    <module>gae</module>
     <module>jsupload</module>
-    <module>samples</module>
   </modules>
 
   <parent>
@@ -22,16 +20,15 @@
 
   <properties>
     <main.basedir>${project.parent.basedir}</main.basedir>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <gwtVersion>2.7.0</gwtVersion>
     <gwtMaven>2.7.0</gwtMaven>
-    <commonsFileuploadVersion>1.3.1</commonsFileuploadVersion>
-    <commonsIoVersion>2.3</commonsIoVersion>
-    <gwtChismesVersion>0.9.7</gwtChismesVersion>
+    <commonsIoVersion>2.16.0</commonsIoVersion>
+    <gwtChismesVersion>0.9.8</gwtChismesVersion>
     <gwtExporterVersion>2.4.0-M1</gwtExporterVersion>
-    <gwtIncubatorVersion>20101117-r1766</gwtIncubatorVersion>
+    <gwtIncubatorVersion>2.0.1</gwtIncubatorVersion>
     <junitVersion>3.8.2</junitVersion>
     <log4jVersion>1.2.16</log4jVersion>
     <commonsLang3Version>3.1</commonsLang3Version>
@@ -86,6 +83,13 @@
 
   <dependencies>
     <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
       <version>${gwtVersion}</version>
@@ -98,9 +102,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>commons-fileupload</groupId>
-      <artifactId>commons-fileupload</artifactId>
-      <version>${commonsFileuploadVersion}</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
+      <version>2.0.0-M2</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -208,6 +212,10 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>LogicalDoc</id>
+      <url>https://logicaldoc.sourceforge.net/maven/</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
@@ -225,29 +233,12 @@
     <system>Google Code</system>
     <url>http://code.google.com/p/gwtupload/issues/list</url>
   </issueManagement>
+
   <scm>
     <connection>scm:git:git@github.com:manolo/gwtupload.git</connection>
     <developerConnection>scm:git:git@github.com:manolo/gwtupload.git</developerConnection>
     <url>https://github.com/manolo/gwtupload</url>
   </scm>
-<!--
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>googlecode</id>
-      <url>svn:https://gwtupload.googlecode.com/svn/mavenrepo/</url>
-    </repository>
-    <site>
-      <id>googlecode</id>
-      <url>svn:https://gwtupload.googlecode.com/svn/site</url>
-    </site>
-    <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>localfolder</id>
-      <url>${localMavenRepo}</url>
-    </snapshotRepository>
-  </distributionManagement>
--->
 
   <build>
     <plugins>
@@ -272,6 +263,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.2</version>
         <configuration>
           <targetJdk>1.5</targetJdk>
         </configuration>

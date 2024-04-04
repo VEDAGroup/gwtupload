@@ -20,7 +20,7 @@ import static gwtupload.shared.UConsts.*;
 import gwtupload.server.UploadAction;
 import gwtupload.server.exceptions.UploadActionException;
 
-import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload2.core.FileItem;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,8 +28,8 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 
@@ -58,7 +58,7 @@ public class SampleUploadServlet extends UploadAction {
    * and delete this items from session.
    */
   @Override
-  public String executeAction(HttpServletRequest request, List<FileItem> sessionFiles) throws UploadActionException {
+  public String executeAction(HttpServletRequest request, List<FileItem> sessionFiles) throws UploadActionException, IOException {
     String response = "";
     int cont = 0;
     for (FileItem item : sessionFiles) {
@@ -74,7 +74,7 @@ public class SampleUploadServlet extends UploadAction {
 
           /// Create a temporary file placed in the default system temp folder
           File file = File.createTempFile("upload-", ".bin");
-          item.write(file);
+          item.write(file.toPath());
 
           /// Save a list with the received files
           receivedFiles.put(item.getFieldName(), file);

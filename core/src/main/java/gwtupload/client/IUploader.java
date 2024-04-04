@@ -443,7 +443,7 @@ public interface IUploader extends HasJsData, HasWidgets, IsWidget {
    *
    * It's useful when you have different uploaders in your client application and
    * you want detect the origin of your file in the server side, inspecting the
-   * property org.apache.commons.fileupload.FileItem#getFieldName();
+   * property org.apache.commons.fileupload2.core.FileItem#getFieldName();
    *
    * @param prefix
    */

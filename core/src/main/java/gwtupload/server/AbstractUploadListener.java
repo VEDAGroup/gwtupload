@@ -19,11 +19,11 @@ package gwtupload.server;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.ProgressListener;
+import org.apache.commons.fileupload2.core.ProgressListener;
 
-/**
+/*
  *
  * Abstract class for file upload listeners used by apache-commons-fileupload to monitor
  * the progress of uploaded files.
@@ -31,7 +31,7 @@ import org.apache.commons.fileupload.ProgressListener;
  * It is useful to implement UploadListeners that can be saved in different
  * ways.
  *
- * @author Manolo Carrasco Moñino
+ * @author Manolo Carrasco Monino
  *
  */
 public abstract class AbstractUploadListener implements ProgressListener, Serializable {

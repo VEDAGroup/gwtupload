@@ -12,11 +12,11 @@ import java.util.Date;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -170,7 +170,7 @@ public class S3UploadServlet extends HttpServlet {
         "<" + UConsts.TAG_MESSAGE + "><![CDATA[ok]]></" + UConsts.TAG_MESSAGE + ">" +
       "</response>"
     );
-    out.print(UConsts.TAG_MSG_START + xml.toString().replaceAll("<", UConsts.TAG_MSG_LT).replaceAll(">", UConsts.TAG_MSG_GT) + UConsts.TAG_MSG_END);
+//    out.print(TAG_MSG_START + xml.toString().replaceAll("<", TAG_MSG_LT).replaceAll(">", TAG_MSG_GT) + TAG_MSG_END);
   }
 
   private void doShow(HttpServletRequest request, HttpServletResponse response) {

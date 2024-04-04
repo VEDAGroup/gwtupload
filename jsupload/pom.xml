@@ -9,7 +9,7 @@
   <parent>
     <groupId>com.googlecode.gwtupload</groupId>
     <artifactId>gwtupload-project</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.6</version>
   </parent>
   <properties>
     <gwt.style>OBF</gwt.style>
@@ -55,9 +55,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>${groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>gwtupload</artifactId>
-      <version>${version}</version>
+      <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -99,24 +99,25 @@
       <resource><directory>src/main/java</directory></resource>
     </resources>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptors>
-            <descriptor>${basedir}/assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>jsupload.zip</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--        <configuration>-->
+<!--          <descriptors>-->
+<!--            <descriptor>${basedir}/assembly.xml</descriptor>-->
+<!--          </descriptors>-->
+<!--          <appendAssemblyId>false</appendAssemblyId>-->
+<!--        </configuration>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>jsupload.zip</id>-->
+<!--            <phase>package</phase>-->
+<!--            <goals>-->
+<!--              <goal>single</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
@@ -130,6 +131,8 @@
           </execution>
         </executions>
         <configuration>
+          <jvm>${env.JAVA_8_HOME}</jvm>
+          <sourceLevel>7</sourceLevel>
           <runTarget>jsupload/JsUpload.html</runTarget>
           <compileReport>true</compileReport>
           <style>${gwt.style}</style>
@@ -143,34 +146,34 @@
           <optimizationLevel>9</optimizationLevel>
         </configuration>
       </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <configuration>
-              <tasks>
-                <exec dir="." executable="perl">
-                  <arg line="-pi -e 's#^\s*(containerId: .*)$#$1 action: &quot;/cgi-bin/jsupload.cgi.pl&quot;, #g' target/${project.build.finalName}/jsupload/JsUpload.html" />
-                </exec>
-                <exec dir="target" executable="git">
-                  <arg line="clone https://code.google.com/p/gwtupload.wiki" />
-                </exec>
-                <exec dir="." executable="perl">
-                  <arg line="gjslib.pl" />
-                </exec>
-                <exec dir="target/gwtupload.wiki" executable="${wikiSvnExec}">
-                  <arg line="commit -m updated_wiki_pages -a" />
-                </exec>
-                <exec dir="target/gwtupload.wiki" executable="${wikiSvnExec}">
-                  <arg line="push origin master" />
-                </exec>
-              </tasks>
-            </configuration>
-            <phase>prepare-package</phase>
-            <goals><goal>run</goal></goals>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <artifactId>maven-antrun-plugin</artifactId>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <configuration>-->
+<!--              <target>-->
+<!--                <exec dir="." executable="perl">-->
+<!--                  <arg line="-pi -e 's#^\s*(containerId: .*)$#$1 action: &quot;/cgi-bin/jsupload.cgi.pl&quot;, #g' target/${project.build.finalName}/jsupload/JsUpload.html" />-->
+<!--                </exec>-->
+<!--                <exec dir="target" executable="git">-->
+<!--                  <arg line="clone https://code.google.com/p/gwtupload.wiki" />-->
+<!--                </exec>-->
+<!--                <exec dir="." executable="perl">-->
+<!--                  <arg line="gjslib.pl" />-->
+<!--                </exec>-->
+<!--                <exec dir="target/gwtupload.wiki" executable="${wikiSvnExec}">-->
+<!--                  <arg line="commit -m updated_wiki_pages -a" />-->
+<!--                </exec>-->
+<!--                <exec dir="target/gwtupload.wiki" executable="${wikiSvnExec}">-->
+<!--                  <arg line="push origin master" />-->
+<!--                </exec>-->
+<!--              </target>-->
+<!--            </configuration>-->
+<!--            <phase>prepare-package</phase>-->
+<!--            <goals><goal>run</goal></goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
