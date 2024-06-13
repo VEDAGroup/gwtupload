@@ -7,6 +7,9 @@
   <source path="client"/>
   <source path="shared"/>
 
+  <set-configuration-property name="CssResource.enableGss" value="true" />
+  <set-configuration-property name="CssResource.conversionMode" value="strict" />
+
   <replace-with class="gwtupload.client.DecoratedFileUpload.DecoratedFileUploadImplClick">
     <when-type-is class="gwtupload.client.DecoratedFileUpload.DecoratedFileUploadImpl"/>
   </replace-with>

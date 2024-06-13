@@ -15,13 +15,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-user</artifactId>
       <version>${gwtVersion}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-codeserver</artifactId>
       <version>${gwtVersion}</version>
       <scope>provided</scope>
@@ -151,7 +151,7 @@
         </executions>
         <configuration>
             <jvm>${env.JAVA_8_HOME}</jvm>
-            <sourceLevel>7</sourceLevel>
+            <sourceLevel>11</sourceLevel>
           <!-- URL that should be automatically opened in the GWT shell (gwt:run). -->
           <runTarget>index.html</runTarget>
           <!-- Location of the develop-mode web application structure (gwt:run). -->
@@ -163,7 +163,7 @@
           <!-- Compress a bit more the js output -->
           <disableCastChecking>true</disableCastChecking>
           <enableAssertions>false</enableAssertions>
-          <enableClosureCompiler>true</enableClosureCompiler>
+          <!--enableClosureCompiler>true</enableClosureCompiler-->
           <disableClassMetadata>true</disableClassMetadata>
           <optimizationLevel>9</optimizationLevel>
           <!-- Modules to compile -->
@@ -315,7 +315,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
+        <version>3.4.0</version>
         <configuration>
           <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
           <warName>${project.artifactId}-${project.version}</warName>

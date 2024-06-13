@@ -37,19 +37,19 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-user</artifactId>
       <version>${gwtVersion}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-dev</artifactId>
       <version>${gwtVersion}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-codeserver</artifactId>
       <version>${gwtVersion}</version>
       <scope>provided</scope>
@@ -132,7 +132,7 @@
         </executions>
         <configuration>
           <jvm>${env.JAVA_8_HOME}</jvm>
-          <sourceLevel>7</sourceLevel>
+          <sourceLevel>11</sourceLevel>
           <runTarget>jsupload/JsUpload.html</runTarget>
           <compileReport>true</compileReport>
           <style>${gwt.style}</style>
