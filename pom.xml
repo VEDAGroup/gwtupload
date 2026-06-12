@@ -40,12 +40,27 @@
   </properties>
 
   <distributionManagement>
+    <repository>
+      <id>veda-releases</id>
+      <url>https://nexus.dev.veda.net/repository/releases</url>
+    </repository>
     <snapshotRepository>
-      <id>sonatype-nexus-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <uniqueVersion>false</uniqueVersion>
+      <id>veda-snapshots</id>
+      <url>https://nexus.dev.veda.net/repository/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
+  <repositories>
+    <repository>
+      <id>veda</id>
+      <url>https://nexus.dev.veda.net/repository/maven-public</url>
+    </repository>
+  </repositories>
+  <scm>
+    <connection>scm:git:https://github.com/VEDAGroup/gwtupload.git</connection>
+    <developerConnection>scm:git:https://github.com/VEDAGroup/gwtupload.git</developerConnection>
+    <url>https://github.com/VEDAGroup/gwtupload</url>
+    <tag>HEAD</tag>
+  </scm>
 
   <profiles>
      <profile>
@@ -174,70 +189,6 @@
   </developers>
 
   <ciManagement />
-
-  <mailingLists>
-    <mailingList>
-      <name>gwtupload@googlegroups.com</name>
-      <post>gwtupload@googlegroups.com</post>
-      <archive>http://groups.google.com/group/gwtupload</archive>
-    </mailingList>
-  </mailingLists>
-
-  <repositories>
-    <repository>
-      <id>repo1</id>
-      <url>http://repo1.maven.org/maven2/</url>
-    </repository>
-    <repository>
-      <id>gwtupload</id>
-      <url>http://gwtupload.googlecode.com/svn/mavenrepo/</url>
-    </repository>
-    <repository>
-      <id>gwtchismes</id>
-      <url>http://gwtchismes.googlecode.com/svn/mavenrepo/</url>
-    </repository>
-    <repository>
-      <id>timepedia</id>
-      <url>http://timefire-repository.googlecode.com/svn/mavenrepo/</url>
-    </repository>
-    <repository>
-      <id>seasar</id>
-      <url>http://maven.seasar.org/maven2</url>
-    </repository>
-    <repository>
-      <id>gquery-plugins</id>
-      <url>http://gwtquery-plugins.googlecode.com/svn/mavenrepo</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>LogicalDoc</id>
-      <url>https://logicaldoc.sourceforge.net/maven/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>gwtupload</id>
-      <url>http://gwtupload.googlecode.com/svn/mavenrepo/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>codehaus.snapshots</id>
-      <url>http://snapshots.repository.codehaus.org/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <issueManagement>
-    <system>Google Code</system>
-    <url>http://code.google.com/p/gwtupload/issues/list</url>
-  </issueManagement>
-
-  <scm>
-    <connection>scm:git:git@github.com:manolo/gwtupload.git</connection>
-    <developerConnection>scm:git:git@github.com:manolo/gwtupload.git</developerConnection>
-    <url>https://github.com/manolo/gwtupload</url>
-  </scm>
 
   <build>
     <plugins>
