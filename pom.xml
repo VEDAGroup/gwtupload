@@ -5,7 +5,7 @@
   <artifactId>gwtupload-project</artifactId>
   <name>GwtUpload project</name>
   <packaging>pom</packaging>
-  <version>1.0.6-VEDA</version>
+  <version>1.0.7-VEDA</version>
 
   <modules>
     <module>core</module>
@@ -20,8 +20,7 @@
 
   <properties>
     <main.basedir>${project.parent.basedir}</main.basedir>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <gwtVersion>2.11.0</gwtVersion>
     <gwtMaven>2.10.0</gwtMaven>
@@ -104,7 +103,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
-      <version>2.0.0-M2</version>
+      <version>2.0.0-M4</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
