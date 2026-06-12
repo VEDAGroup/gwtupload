@@ -706,7 +706,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
         }
     }
 
-    protected void getFileItemsSummary(HttpServletRequest request, XMLResponse xmlResponse) {
+    protected void getFileItemsSummary(HttpServletRequest request, XMLResponse xmlResponse) throws IOException {
         List<FileItem> s = getMyLastReceivedFileItems(request);
         if (s != null) {
             xmlResponse.prepareFilesParams();

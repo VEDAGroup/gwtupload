@@ -84,7 +84,7 @@ public class UploadAction extends UploadServlet {
    * @param fieldName field name
    * @return the string value
    */
-  public static String getFormField(List<FileItem> sessionFiles, String fieldName) {
+  public static String getFormField(List<FileItem> sessionFiles, String fieldName) throws IOException {
     FileItem item = findItemByFieldName(sessionFiles, fieldName);
     return item == null || item.isFormField() == false ? null : item.getString();
   }
