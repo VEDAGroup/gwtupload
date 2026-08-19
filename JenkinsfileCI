@@ -1,0 +1,59 @@
+pipeline {
+
+/*
+    Jenkinsfile für das Projekt gwtupload
+    
+    Maven Goals: mvn clean deploy --update-snapshots
+    Tools: Maven 3.9.14, Azul Java 17 ( LTS) JDK + Java FX 17
+
+    Hinweise zu den mvn Parametern:
+    -U --update-snapshots Forces a check for updated releases and snapshots on remote repositories
+*/
+
+    agent any
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '4', artifactNumToKeepStr: '4'))
+
+        disableConcurrentBuilds abortPrevious: true
+    }
+
+    tools {
+        maven 'Maven 3.9.14'
+        jdk 'Azul Java 17 ( LTS) JDK + Java FX 17'
+    }
+
+    stages {
+        stage('Build') {
+
+            steps {
+                withMaven {
+                    bat "mvn clean deploy --update-snapshots"
+                }
+
+                recordIssues([
+                        enabledForFailure: true,
+                        tools: [java()]
+                ])
+            }
+
+            post {
+                always {
+                    // Sende E-Mails an Entwickler und Auslöser des Builds
+                    emailext subject: '$DEFAULT_SUBJECT',
+                            body: '$DEFAULT_CONTENT',
+                            from: 'noreply@bil-ci.veda.de',
+                            // Die explizite Angabe einer to: Adresse kann weggelassen werden, unter der Annahme,
+                            // dass es (mindestens) einen developer oder einen requestor gibt.
+                            // Mail an Developer (Author der Änderung) / Auslöser des Builds senden:
+                            recipientProviders: [culprits(), developers(), requestor()]
+                }
+
+                success {
+                    echo 'Build erfolgreich abgeschlossen.'
+                    // do not call cleanWs() to keep the workspace for the next execution, so that the next build can use the same workspace and potentially save time on checkout and build.
+                }
+            }
+        }
+    }
+}
