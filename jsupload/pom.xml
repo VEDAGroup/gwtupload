@@ -177,6 +177,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.10</version>
         <configuration>
            <downloadSources>true</downloadSources>
            <downloadJavadocs>false</downloadJavadocs>
@@ -220,7 +221,7 @@
   <distributionManagement>
     <site>
       <id>googlecode</id>
-      <url>svn:https://gwtupload.googlecode.com/svn/site/${artifactId}</url>
+      <url>svn:https://gwtupload.googlecode.com/svn/site/${project.artifactId}</url>
     </site>
   </distributionManagement>
 

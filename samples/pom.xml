@@ -102,6 +102,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.10</version>
         <configuration>
            <downloadSources>true</downloadSources>
            <downloadJavadocs>false</downloadJavadocs>
@@ -208,6 +209,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.10</version>
         <configuration>
            <downloadSources>true</downloadSources>
            <downloadJavadocs>false</downloadJavadocs>
