@@ -416,10 +416,20 @@ public class UploadServlet extends HttpServlet implements Servlet {
             response.addHeader("Access-Control-Allow-Origin", origin);
             response.addHeader("Access-Control-Allow-Credentials", "true");
             return true;
-        } else if (origin != null) {
-            logger.error("checkCORS error Origin: " + origin + " does not match:" + corsDomainsRegex);
+        } else if (origin != null && !isSameOrigin(origin, request)) {
+            logger.warn("checkCORS warning Origin: " + origin + " does not match:" + corsDomainsRegex);
         }
         return false;
+    }
+
+    /**
+     * Browsers send the Origin header with same-origin POST requests too. Such requests need no CORS headers,
+     * so a mismatch with corsDomainsRegex is not worth a log entry.
+     */
+    private static boolean isSameOrigin(String origin, HttpServletRequest request) {
+        int schemeEnd = origin.indexOf("://");
+        String host = request.getHeader("Host");
+        return schemeEnd >= 0 && host != null && origin.substring(schemeEnd + 3).equalsIgnoreCase(host);
     }
 
     /**
@@ -518,7 +528,7 @@ public class UploadServlet extends HttpServlet implements Servlet {
         String parameter = request.getParameter(UConsts.PARAM_SHOW);
         FileItem item = findFileItem(getMySessionFileItems(request), parameter);
         if (item != null) {
-            logger.error("UPLOAD-SERVLET (" + request.getSession().getId() + ") getUploadedFile: " + parameter + " returning: " + item.getContentType() + ", " + item.getName() + ", " + item.getSize()
+            logger.debug("UPLOAD-SERVLET (" + request.getSession().getId() + ") getUploadedFile: " + parameter + " returning: " + item.getContentType() + ", " + item.getName() + ", " + item.getSize()
                     + " bytes");
             response.setContentType(item.getContentType());
             copyFromInputStreamToOutputStream(item.getInputStream(), response.getOutputStream());
@@ -881,10 +891,10 @@ public class UploadServlet extends HttpServlet implements Servlet {
             uploader.setProgressListener(listener);
 
             // Receive the files
-            logger.error("UPLOAD-SERVLET (" + session.getId() + ") parsing HTTP POST request ");
+            logger.debug("UPLOAD-SERVLET (" + session.getId() + ") parsing HTTP POST request ");
             uploadedItems = uploader.parseRequest(request);
             session.removeAttribute(getSessionLastFilesKey(request));
-            logger.error("UPLOAD-SERVLET (" + session.getId() + ") parsed request, " + uploadedItems.size() + " items received.");
+            logger.debug("UPLOAD-SERVLET (" + session.getId() + ") parsed request, " + uploadedItems.size() + " items received.");
 
             // Received files are put in session
             List<FileItem> sessionFiles = getMySessionFileItems(request);
