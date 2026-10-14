@@ -10,6 +10,8 @@ public class UploadLogger {
 
     void info(Object o);
 
+    void warn(Object o);
+
     void error(Object o);
 
     void debug(Object o, Throwable t);
@@ -32,6 +34,10 @@ public class UploadLogger {
 
     public void info(Object o) {
       System.out.println(new Date() + " " + name + " INFO: " + o);
+    }
+
+    public void warn(Object o) {
+      System.err.println(new Date() + " " + name + " WARN: " + o);
     }
 
     public void error(Object o) {
@@ -66,6 +72,10 @@ public class UploadLogger {
       logger.info(o);
     }
 
+    public void warn(Object o) {
+      logger.warn(o);
+    }
+
     public void error(Object o) {
       logger.error(o);
     }
@@ -96,6 +106,10 @@ public class UploadLogger {
 
     public void info(Object o) {
       logger.log(Level.INFO, o.toString());
+    }
+
+    public void warn(Object o) {
+      logger.log(Level.WARNING, o.toString());
     }
 
     public void error(Object o) {
@@ -141,6 +155,10 @@ public class UploadLogger {
 
   public void info(Object o) {
     logger.info(o);
+  }
+
+  public void warn(Object o) {
+    logger.warn(o);
   }
 
   public void error(Object o) {
